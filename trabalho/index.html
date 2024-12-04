@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Produtos</title>
+
+    <!-- Link para o CSS do Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Link para o seu CSS personalizado -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1>Gestão de Produtos</h1>
+
+        <!-- Botão para abrir o modal de adicionar produto -->
+        <button class="btn btn-primary mb-3" onclick="abrirModalAdicionar()">Adicionar Produto</button>
+
+        <!-- Tabela de Produtos -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Quantidade</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="produtosTabela"></tbody>
+        </table>
+    </div>
+
+    <!-- Modal de Adicionar/Editar Produto -->
+    <div id="alertContainer" style="display: none;">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <span id="alertMessage">A quantidade não pode ser negativa.</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    
+    <div class="modal" tabindex="-1" id="adicionarEditarProdutoModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Adicionar Produto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formProduto">
+                        <div class="mb-3">
+                            <label for="nomeProduto" class="form-label">Nome do Produto</label>
+                            <input type="text" class="form-control" id="nomeProduto" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="quantidadeProduto" class="form-label">Quantidade</label>
+                            <input type="number" class="form-control" id="quantidadeProduto" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descricaoProduto" class="form-label">Descrição</label>
+                            <input type="text" class="form-control" id="descricaoProduto" required>
+                        </div>
+                        <input type="hidden" id="produtoId"> <!-- Campo para armazenar o ID do produto (para editar) -->
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="salvarProdutoBtn">Salvar Produto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação de Exclusão com senha -->
+    <div class="modal" tabindex="-1" id="confirmarExclusaoModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Excluir Produto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Tem certeza de que deseja excluir este produto?</p>
+                    <div class="mb-3">
+                        <label for="senhaExclusao" class="form-label">Digite a senha:</label>
+                        <input type="password" class="form-control" id="senhaExclusao">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirmarExcluirBtn">Excluir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script do Bootstrap e seu Script Personalizado -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
